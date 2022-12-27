@@ -5,6 +5,8 @@ import './App.css';
 import Ground from './components/Ground.jsx';
 import Fpv from './components/Fpv.jsx';
 import Player from './components/Player';
+import Cubes from './components/Cubes';
+import TexturesSelect from './components/TexturesSelect';
 
 function App() {
 
@@ -15,12 +17,14 @@ function App() {
         <ambientLight intensity={0.5} />
         <Fpv />
         <Physics>
+          <Cubes />
           <Player />
           <Ground />
         </Physics>
-      
+
       </Canvas>
 
+      <TexturesSelect />
       <div className='pointer'>+</div>
     </>
   )

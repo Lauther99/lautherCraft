@@ -9,13 +9,13 @@ const CHARACTER_JUMP_FORCE = 3;
 
 
 const Player = () => {
-    const { moveBackward, moveForward, moveLeft, moveRight, jump, dirt, glass, } = useKeyboard()
+    const { moveBackward, moveForward, moveLeft, moveRight, jump} = useKeyboard()
 
     const { camera } = useThree();
     const [ref, api] = useSphere(() => ({
         mass: 1,
         type: 'Dynamic',
-        position: [0, 5, 0]
+        position: [0, 0.5, 0]
     }));
 
     const pos = useRef([0, 0, 0])
@@ -48,12 +48,12 @@ const Player = () => {
         direction
             .subVectors(frontVector, sideVector)
             .normalize()
-            .multiplyScalar(CHARACTER_SPEED) // walk: 2, run: 5
+            .multiplyScalar(CHARACTER_SPEED)
             .applyEuler(camera.rotation)
 
         api.velocity.set(direction.x, vel.current[1], direction.z)
 
-        if(jump && Math.abs(vel.current[1]) < .05){
+        if(jump && Math.abs(vel.current[1]) < .03){
             api.velocity.set(
                 vel.current[0],
                 CHARACTER_JUMP_FORCE,
